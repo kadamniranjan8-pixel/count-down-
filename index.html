@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Tanu 🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    color: #fff;
+    overflow: hidden;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 55px;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hidden {
+    display: none;
+}
+
+#countdown {
+    font-size: 25px;
+}
+
+/* Floating hearts ❤️ */
+.heart {
+    position: absolute;
+    color: pink;
+    animation: float 5s infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="before">
+    <h1>Something special for you 💝</h1>
+    <p id="countdown"></p>
+</div>
+
+<div class="container hidden" id="after">
+    <h1>Happy Birthday Tanu 🎂💖</h1>
+    <p style="font-size:20px;">
+        You are the cutest person ever 😍💕<br>
+        Stay happy always 🌸✨<br><br>
+        From someone who cares ❤️
+    </p>
+</div>
+
+<script>
+// 🎯 Set exact birthday time
+let target = new Date("March 24, 2026 20:56:00");
+
+function updateCountdown() {
+    let now = new Date();
+    let diff = target - now;
+
+    if (diff <= 0) {
+        document.getElementById("before").style.display = "none";
+        document.getElementById("after").classList.remove("hidden");
+        startHearts();
+        return;
+    }
+
+    let m = Math.floor(diff / 60000);
+    let s = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById("countdown").innerText =
+        m + "m " + s + "s left 💫";
+}
+
+setInterval(updateCountdown, 1000);
+
+// 💖 Floating hearts animation
+function startHearts() {
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (20 + Math.random() * 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
